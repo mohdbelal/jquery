@@ -1,0 +1,38 @@
+var conn=require('./databaseConnect.js');
+var mysql=require('mysql');
+
+module.exports.aa=function(userid,password,option,callback){
+	
+	switch(option){
+			case "Insert":	
+				var insert ="insert into userlogin values('"+userid+"','"+password+"')";
+				conn.conne.query(insert,function(err,result){
+					if(err) throw err;
+					callback("Inseted Successfully");
+				});
+			break;
+
+			case "Delete":
+				var deletee ="delete from userlogin where userid='"+userid+"'";
+				conn.conne.query(deletee,function(err,result){
+					if(err) throw err;
+					callback("Deleted Successfully");
+				});
+			break;
+
+			case "Validate":
+				var select ="select userid from userlogin where userid='"+userid+"'";
+				conn.conne.query(select,function(err,result){
+				if(err) throw err;
+				if(result.length>0)
+					{
+						callback("Userid Exists");
+					}else{
+						callback("Userid avaliable");
+					}
+				});
+			break;
+		}
+	
+
+}

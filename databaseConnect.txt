@@ -1,0 +1,17 @@
+var mysql=require('mysql');
+
+var conne=mysql.createConnection({
+	host:"localhost",
+	user:"raj",
+	password:"1234",
+	database:"raj"
+});
+
+
+conne.connect(function(err){
+	if(err) throw err;
+	
+		console.log("connected!!!");
+	});
+
+exports.conne=conne;
